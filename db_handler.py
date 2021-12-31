@@ -51,6 +51,13 @@ def get_posts(page):
     
     cursor.execute(sql)
     result = cursor.fetchall()
+    
+    for row in result:
+        
+        # print(row)   # 5개의 딕셔너리가 나옴
+        # row는 dict로 구성되어있고, 새로운 키와 새로운 값을 대입할 수 있겠네?
+        # 결과로 나가기 전에, 각 줄의 dict를 수정해서 내보내주자(각 게시물별로 쿼리를 재수행하자 댓글의 갯수를 COUNT로)
+        row['reply_count'] = 0
 
     return result
 
