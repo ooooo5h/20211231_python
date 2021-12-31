@@ -1,3 +1,6 @@
+# DB를 조회 + 수정 + 추가 등의 작업들을 하는 공간 : DB를 제어한다(control)
+# 모델을 이용해서 데이터를 컨트롤한다 => Controller
+
 # DB 연결 / 쿼리 / 결과 분석 표시 등등
 # DB 관련된 파이썬 코드 작성 부분   
 from pymysql import connect
@@ -19,3 +22,13 @@ db = connect(
 cursor = db.cursor()
 
 # 필요 기능들을 함수로 작성
+# 1. 수강생 목록조회
+def get_user_list():
+    
+    sql = f"SELECT * FROM users"
+    
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    
+    # API => 원하는 쿼리의 수행 결과를 잘 가공해서, 화면단에서 사용할 수 있게 전달해주는 역할
+    return result

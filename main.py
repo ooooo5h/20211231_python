@@ -1,5 +1,10 @@
-# 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
+# 사용자에게 보여지는 부분 전담 => View
+# Model + Controller + View 조합해서 코딩하는 패턴을 MVC 패턴이라고 함
 
+
+# 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
+from db_handler import get_user_list
+from models import Users
 
 # 메인 메뉴를 출력하는 기능을 함수로 만들자
 def show_main_menu():
@@ -13,6 +18,7 @@ def show_main_menu():
         
         if num == 0:
             print('프로그램을 종료합니다.')
+            break
             
         elif num == 1:
             # 함수의 실행은 코드를 불러낼 때 실행되는게 아니라,
@@ -23,8 +29,14 @@ def show_main_menu():
 
 # 1번 : DB에서 수강생 목록 조회 요청하는 기능 추가
 def get_user_list_from_db():
-    print('db_handler에게 사용자 목록을 요청해야함')
-
+    
+    result = get_user_list()   # DB 전담 클래스가 보내준 결과(dict여러개를 tuple로)를 , UI(main.py)에서 활용하기
+    
+    # for문으로 돌면서 문구가공 및 출력
+    for row in result:
+        # print(row)    # row한줄이 dict로 표현됨
+        user = Users(row)
+    
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
 show_main_menu()
