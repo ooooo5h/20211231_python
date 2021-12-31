@@ -3,7 +3,7 @@
 
 
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
-from db_handler import get_all_user_count, get_user_list, get_posts
+from db_handler import get_all_user_count, get_user_list, get_posts, get_all_lectures
 from models import Users
 from models import Posts
 
@@ -66,11 +66,10 @@ def get_posts_by_page_num(page):
         post.get_simple_post()
     
 
-
 # 3번 : DB에서 강의 목록과 강의별 평균 점수 가져오는 기능 추가
 def get_lectures_from_db():
-    pass     # db_handler 파일 이용 예정    
-
+    query_result = get_all_lectures()
+    print(query_result)    
 
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
