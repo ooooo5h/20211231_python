@@ -3,7 +3,7 @@
 
 
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
-from db_handler import get_all_user_count, get_user_list, get_posts, get_all_lectures
+from db_handler import add_lecture, get_all_user_count, get_user_list, get_posts, get_all_lectures
 from models import Users, Posts, Lectures
 from time import sleep
 
@@ -54,10 +54,11 @@ def show_main_menu():
                 lecture_name = input('강의명 : ')
                 max_count = int(input('정원 : '))
                 fee = int(input('수강료 : '))
+                campus_name = input('캠퍼스명 : ')
                       
                                 
                 # DB에 추가 => db_handler.py에서 SQL
-                
+                add_lecture(lecture_name, max_count, fee, campus_name)
                 
                 print('강의 추가가 완료되었습니다.')
                 sleep(2)
