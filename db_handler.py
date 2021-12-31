@@ -54,11 +54,24 @@ def get_posts(page):
     
     for row in result:
         
-        # print(row)   # 5개의 딕셔너리가 나옴
+        # print(row)   # 5개의 딕셔너리가 나옴  => 게시글에 대한 정보(posts테이블)를 담은 dict였음
         # row는 dict로 구성되어있고, 새로운 키와 새로운 값을 대입할 수 있겠네?
         # 결과로 나가기 전에, 각 줄의 dict를 수정해서 내보내주자(각 게시물별로 쿼리를 재수행하자 댓글의 갯수를 COUNT로)
         row['reply_count'] = 0
-
+        
+        
+        # 각 게시글 별 쿼리 수행 (댓글 몇개?)
+        sql = f"""
+        SELECT COUNT(*) AS reply_count
+        FROM posts_reply AS pr
+        WHERE pr.post_id = {row['id']}
+        """
+        
+        cursor.execute(sql)
+        reply_count_result = cursor.fetchone()
+        # print(reply_count_result)   # dict형태로 받아온 결과가 출력
+        row['reply_count'] = reply_count_result['reply_count']
+        
     return result
 
 
