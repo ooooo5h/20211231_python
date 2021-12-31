@@ -20,12 +20,18 @@ class Users:
 
     # 각 사용자의 정보를 가공해서 간략하게 출력하는 기능
     # 이름 - 35세, 남성 (210805 가입)
+    # 가입일로부터 50일이 지나면 => 정회원으로 취급
+    # 2021년 10월 10일 정회원 등록 예정 => datetime으로부터, 50일이 지난 날짜(덧셈/뺄셈을 해보자)
     def get_simple_info(self):
         
         
         format_date = self.created_at.strftime('%y%m%d')
         print(f'{self.name} - {self.get_age()}세, {self.gender} ({format_date} 가입)')
 
+        # timedelta 체험 => 얼만큼 더해줄 지 변수에 저장
+        diff_days = datetime.timedelta(days=50)
+        print(f'정회원 일자 : {self.created_at + diff_days}')        
+        
     
     # 사용자의 나이 계산해주는 기능
     def get_age(self):
