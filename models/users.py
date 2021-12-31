@@ -40,4 +40,4 @@ class Users:
         # 현재 일자의 연도를 얻어오면, 자동으로 현재 나이 계산이 가능하겠지?
         
         now_year = datetime.datetime.utcnow().year    # 세계 표준 시간(DB 기준 시간대 적용)
-        return now_year - self.birth_year + 1
+        return now_year - self.birth_year + 1  

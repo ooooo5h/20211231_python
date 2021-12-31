@@ -5,7 +5,7 @@
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
 from db_handler import get_user_list, get_posts
 from models import Users
-from models.posts import Posts
+from models import Posts
 
 # 메인 메뉴를 출력하는 기능을 함수로 만들자
 def show_main_menu():
@@ -32,7 +32,7 @@ def show_main_menu():
             # DB에서 게시글 목록 조회 요청
             page_num = int(input('몇 페이지의 글을 보겠습니까? : '))
             get_posts_by_page_num(page_num)
-
+            
 # 1번 : DB에서 수강생 목록 조회 요청하는 기능 추가
 def get_user_list_from_db():
     
@@ -50,6 +50,7 @@ def get_posts_by_page_num(page):
     result = get_posts(page)
     
     for row in result:
+        # print(row)
         post = Posts(row)
         post.get_simple_post()
     

@@ -1,3 +1,5 @@
+from models import Users
+
 class Posts:
     
     def __init__(self, data_dict):
@@ -6,12 +8,14 @@ class Posts:
         self.title = data_dict['title']
         self.content = data_dict['content']
         self.created_at = data_dict['created_at']
-        
+        self.writer_name = data_dict['writer_name']
         
     # 게시글 목록 표시하는 기능(간단한 정보)
-    # 제목 : 실제제목 (8월 5일 작성됨)
+    # 제목 : 실제제목 (8월 5일, 조경진이 작성함)     => 체인지 ; 작성자 이름도 같이
     def get_simple_post(self):
         
         format_date = self.created_at.strftime( '%m월 %d일' )
-        
-        print(f'제목 : {self.title} ({format_date} 작성됨)')
+               
+        print(f'제목 : {self.title} ({format_date}, {self.writer_name}이 작성함)')
+         
+    
