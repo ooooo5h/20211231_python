@@ -15,3 +15,6 @@ class Users:
         self.friend_id = info_dict['friend_id']
         
         
+    # 각 사용자의 정보를 가공해서 간략하게 출력하는 기능
+    def get_simple_info(self):
+        print(f'{self.name} - {self.birth_year}세, {self.gender}')
