@@ -5,6 +5,7 @@
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
 from db_handler import get_all_user_count, get_user_list, get_posts, get_all_lectures
 from models import Users, Posts, Lectures
+from time import sleep
 
 
 # 메인 메뉴를 출력하는 기능을 함수로 만들자
@@ -47,6 +48,19 @@ def show_main_menu():
             print('=================================')
             lecture_menu_num = int(input('메뉴 선택 : '))
 
+            if lecture_menu_num == 1:
+                
+                # 추가 강의 입력. 항목들은 main.py에 입력
+                lecture_name = input('강의명 : ')
+                max_count = int(input('정원 : '))
+                fee = int(input('수강료 : '))
+                      
+                                
+                # DB에 추가 => db_handler.py에서 SQL
+                
+                
+                print('강의 추가가 완료되었습니다.')
+                sleep(2)
         
             
 # 1번 : DB에서 수강생 목록 조회 요청하는 기능 추가
