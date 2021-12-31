@@ -14,6 +14,7 @@ def show_main_menu():
         print('===== 강의 관리 시스템 (LMS) =====')
         print('1. 수강생 목록 조회')
         print('2. 게시글 목록 조회')
+        print('3. 강의 목록 조회' )
         print('0. 프로그램 종료')
         print('=================================')
         num = int(input('메뉴 선택 : '))
@@ -27,13 +28,16 @@ def show_main_menu():
             # 코드가 이미 다 불러지고, 메뉴가 다 뜨고 나서 키보드로 1번을 골랐을 때 실행됨(get_user_list_from_db함수의 호출이 완료된 시점)
             # 함수 안의 다른 함수 호출은 위아래 순서에 관계없이 불러낼 수 있다.
             get_user_list_from_db()
-            
-            
-            
+                      
         elif num == 2:
             # DB에서 게시글 목록 조회 요청
             page_num = int(input('몇 페이지의 글을 보겠습니까? : '))
             get_posts_by_page_num(page_num)
+            
+        elif num ==3:
+            # DB에서 강의목록 + 평균 평점 조회
+            get_lectures_from_db()
+        
             
 # 1번 : DB에서 수강생 목록 조회 요청하는 기능 추가
 def get_user_list_from_db():
@@ -61,6 +65,13 @@ def get_posts_by_page_num(page):
         post = Posts(row)
         post.get_simple_post()
     
+
+
+# 3번 : DB에서 강의 목록과 강의별 평균 점수 가져오는 기능 추가
+def get_lectures_from_db():
+    pass     # db_handler 파일 이용 예정    
+
+
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
 show_main_menu()
