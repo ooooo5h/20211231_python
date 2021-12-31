@@ -12,6 +12,7 @@ def show_main_menu():
     while True:
         print('===== 강의 관리 시스템 (LMS) =====')
         print('1. 수강생 목록 조회')
+        print('2. 게시글 목록 조회')
         print('0. 프로그램 종료')
         print('=================================')
         num = int(input('메뉴 선택 : '))
@@ -26,6 +27,10 @@ def show_main_menu():
             # 함수 안의 다른 함수 호출은 위아래 순서에 관계없이 불러낼 수 있다.
             get_user_list_from_db()
 
+        elif num == 2:
+            # DB에서 게시글 목록 조회 요청
+            page_num = int(input('몇 페이지의 글을 보겠습니까? : '))
+            get_posts_by_page_num(page_num)
 
 # 1번 : DB에서 수강생 목록 조회 요청하는 기능 추가
 def get_user_list_from_db():
@@ -37,6 +42,11 @@ def get_user_list_from_db():
         # print(row)    # row한줄이 dict로 표현됨
         user = Users(row)
         user.get_simple_info()   # user에 만들어진 메쏘드를 활용
+    
+
+# 2번 : DB에서 게시글을 요청한 페이지에 맞게 요청하는 기능 추가
+def get_posts_by_page_num(page):
+    pass
     
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
