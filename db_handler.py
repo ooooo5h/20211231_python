@@ -55,3 +55,13 @@ def get_posts(page):
     return result
 
 
+# 3. DB에 모든 회원의 수를 물어보는 함수 추가
+def get_all_user_count():   # 결과 자체를 숫자로 리턴해주면 편하겠지?
+    
+    sql = f"SELECT COUNT(*) AS user_count FROM users"
+    
+    cursor.execute(sql)
+    result = cursor.fetchone()    # 목록말고, 최초의 한 줄만 가져와라(어차피 한줄뿐일테니까)
+    
+    return result['user_count']
+

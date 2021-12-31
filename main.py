@@ -3,7 +3,7 @@
 
 
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
-from db_handler import get_user_list, get_posts
+from db_handler import get_all_user_count, get_user_list, get_posts
 from models import Users
 from models import Posts
 
@@ -22,12 +22,14 @@ def show_main_menu():
             print('프로그램을 종료합니다.')
             break
             
-        elif num == 1:
+        elif num == 1:          
             # 함수의 실행은 코드를 불러낼 때 실행되는게 아니라,
             # 코드가 이미 다 불러지고, 메뉴가 다 뜨고 나서 키보드로 1번을 골랐을 때 실행됨(get_user_list_from_db함수의 호출이 완료된 시점)
             # 함수 안의 다른 함수 호출은 위아래 순서에 관계없이 불러낼 수 있다.
             get_user_list_from_db()
-
+            
+            
+            
         elif num == 2:
             # DB에서 게시글 목록 조회 요청
             page_num = int(input('몇 페이지의 글을 보겠습니까? : '))
@@ -43,6 +45,11 @@ def get_user_list_from_db():
         # print(row)    # row한줄이 dict로 표현됨
         user = Users(row)
         user.get_simple_info()   # user에 만들어진 메쏘드를 활용
+     
+        
+    # DB 한번 더 접근해서 총 인원수를 파악
+    user_count = get_all_user_count()   # 이 함수는 내부에서 숫자만 추출해서 리턴중
+    print(f'총 수강생 : {user_count}명')
     
 
 # 2번 : DB에서 게시글을 요청한 페이지에 맞게 요청하는 기능 추가
