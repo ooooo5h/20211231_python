@@ -3,7 +3,7 @@
 
 
 # 메뉴 입력 / 분기 처리 등 사용자 contact 부분을 전담하는 부분 
-from db_handler import get_user_list
+from db_handler import get_user_list, get_posts
 from models import Users
 
 # 메인 메뉴를 출력하는 기능을 함수로 만들자
@@ -46,6 +46,7 @@ def get_user_list_from_db():
 
 # 2번 : DB에서 게시글을 요청한 페이지에 맞게 요청하는 기능 추가
 def get_posts_by_page_num(page):
+    get_posts(page)
     
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
