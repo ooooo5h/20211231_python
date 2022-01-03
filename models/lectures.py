@@ -4,4 +4,4 @@ class Lectures:
         self.name = data_dict['name']
         
         # 평균점수 : DB에서 긴 소수점이 와도, 파이썬에서 소수 1자리까지만 넣어주자
-        self.avg_score = round(data_dict['avg_score'], 1) 
+        self.avg_score = data_dict['avg_score'] 

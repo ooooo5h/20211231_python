@@ -43,6 +43,7 @@ def show_main_menu():
             get_lectures_from_db()
             
             # 신규 과목 추가 or 이전 항목으로
+            print('=================================')
             print(f'1. 신규 과목 추가')
             print(f'0. 이전으로')
             print('=================================')
@@ -97,7 +98,7 @@ def get_lectures_from_db():
     
     for row in query_result:
         lecture = Lectures(row)
-        print(lecture.name, lecture.avg_score)
+        print(f'강의명 : {lecture.name} / 평균 점수 : {lecture.avg_score}')
 
 # python 명령어로 실행될 때, 코드는 위에서부터 밑으로 한 줄씩 순서대로 실행
 show_main_menu()

@@ -91,15 +91,32 @@ def get_all_lectures():
     
     # 강의 목록(SELECT) / 집계 함수 (GROUP BY) 활용 예시
     sql = f"""
-    SELECT l.name, AVG(lr.score) AS avg_score
-    FROM lectures AS l
-    JOIN lecture_review AS lr ON l.id = lr.lecture_id
-    GROUP BY l.id    
-    ORDER BY l.name;
+    SELECT l.id, l.name 
+    FROM lectures AS l;
     """          # """  여러줄의 str을 쉽게 작성할 수 있게 도와주는 tool  """
     
     cursor.execute(sql)
     result = cursor.fetchall()
+    
+    for row in result:
+        
+        row['avg_score'] = 0
+        
+        sql = f"""
+        SELECT l.name , ROUND(AVG(lr.score), 1) AS avg_score
+        FROM lectures AS l
+        JOIN lecture_review AS lr ON l.id = lr.lecture_id
+        WHERE l.id = {row['id']};   
+        """
+    
+        cursor.execute(sql)
+        result_with_score = cursor.fetchone()
+        
+        if result_with_score['avg_score'] == None:
+            row['avg_score'] = f'0'
+        else:
+            row['avg_score'] = result_with_score['avg_score']
+    
     return result
 
 
